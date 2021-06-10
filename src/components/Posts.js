@@ -7,10 +7,6 @@ export default function Posts({ posts, loading }){
         return <h2>Loading...</h2>
     }
 
-    function temp1(id){
-        window.location.href = "/post/"+id;
-    }
-
     return (
         <ul className="posts">
             {posts.map(post => (
@@ -19,7 +15,7 @@ export default function Posts({ posts, loading }){
                     <hr/>
                     <p>{post.content.match( /[^\.!\?]+[\.!\?]+["']?|.+$/g ).slice(0, 3).join(' ')}</p>
                     <hr/>
-                    <button onClick={()=>temp1(post.id)}>Read more</button>
+                    <button onClick={()=>window.location.href = "/post/"+post.id}>Read more</button>
                     <div className="like">
                         <img src={Like} alt=""/> 
                         <span>{post.likes}</span>

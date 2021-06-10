@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 export default function Post ({ id }) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
+    const [author, setAuthor] = useState('')
     const [commments, setCommments] = useState([])
     useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/post/"+id, { headers: {
@@ -14,6 +15,7 @@ export default function Post ({ id }) {
           .then(function (response) {
             setTitle(response.data.title)
             setContent(response.data.content)
+            setAuthor(response.data.author)
           })
           .catch(function (error) {
 
@@ -60,6 +62,8 @@ export default function Post ({ id }) {
         <div>
             <h1>{title}</h1>
             <p>{content}</p>
+            
+            <span>Author: {author}</span>
             <hr/>
             {commments.map(commment => (
                 <li key={commment.id}>

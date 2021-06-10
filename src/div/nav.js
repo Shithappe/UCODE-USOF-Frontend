@@ -6,6 +6,7 @@ import {
   Link,
 } from "react-router-dom";
 import Image from './logo.png'
+import ImageUser from '../Assets/user-astronaut-solid.svg'
 
 const nav = () => {
 
@@ -55,15 +56,18 @@ const nav = () => {
       <div>  
         <Link to="/login">Login</Link>
         <Link to="/my_page">My page</Link>
+        
       </div>
     )
     else{
+      let link = "/user/" + Cookies.get('userId');
     return(
       <div className="navuserifno">
-        <Link to="/my_page"><img src='https://raw.githubusercontent.com/Shithappe/metaphysical-beast/main/assets/images/stay.jpg' alt=""/></Link>
+        <Link to={link}><img src={ImageUser} alt=""/></Link>
         <div className="navuserifno2">
           <span onClick={temp}>{Cookies.get('userLogin')}</span>
-          <span>User</span>
+          {/* <span>User</span> */}
+          <br/>
           <button onClick={Logout}>Log out</button>
         </div>
       </div>

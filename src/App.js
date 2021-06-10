@@ -26,7 +26,7 @@ export default function App() {
               <Route path="/posts"><AllPosts /></Route>
               <Route path="/login"><Login /></Route>
               <Route path="/reset"><Reset /></Route>
-              <Route path="/my_page"><MyPage /></Route>
+              <Route path="/user/:id" render={({match}) => (  <MyPage id={match.params.id} />)}/>
               <Route path="/register"><Register /></Route>
               <Route path="/post/:id" render={({match}) => (  <Post id={match.params.id} />)}/>   
               <Route path="/create_post"><CreatePost /></Route>
