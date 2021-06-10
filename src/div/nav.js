@@ -59,9 +59,9 @@ const nav = () => {
     )
     else{
     return(
-      <div class="navuserifno">
+      <div className="navuserifno">
         <Link to="/my_page"><img src='https://raw.githubusercontent.com/Shithappe/metaphysical-beast/main/assets/images/stay.jpg' alt=""/></Link>
-        <div class="navuserifno2">
+        <div className="navuserifno2">
           <span onClick={temp}>{Cookies.get('userLogin')}</span>
           <span>User</span>
           <button onClick={Logout}>Log out</button>
@@ -76,11 +76,12 @@ const nav = () => {
         <img src={Image} alt=""/> 
       </div>
       <ul>
+        <Link to="/create_post">Create post</Link>
         <Link to="/posts">All posts</Link>
         <Link to="/about">Category</Link>
         <Link to="/users">Users</Link>
       </ul>
-      <div class="search">
+      <div className="search">
         <input type='text' placeholder="seach"/>
       </div>
       <Info_user />

@@ -34,9 +34,9 @@ export default function Reset() {
     return(
       isSent ? <h2>Check your email</h2> :
       <form onSubmit={handleSubmit}>
-      <input type="email" value={email} onChange={handleChangeEmail} />
-      <input type="submit" value="Reset password" />
+        <input type="email" value={email} onChange={handleChangeEmail} />
+        <input type="submit" value="Reset password" />
       <Link to="login">Login</Link>
-  </form>
+      </form>
     );
 }

@@ -16,3 +16,15 @@
     font-family: 'Roboto Slab', serif;
     /* height: 200px; */
 }
+
+.like{
+    display: flex;
+    float: right;
+    /* width: 50px; */
+}
+
+.like img{
+    width: 22px;
+    height: 22px;
+    margin: 0 5px 0 5px;
+}

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Post from './Post';
+import React from 'react';
 import './Posts.css';
+import Like from '../Assets/heart-solid.svg'
 
 export default function Posts({ posts, loading }){
     if (loading){
         return <h2>Loading...</h2>
     }
-    let text = [];
 
     function temp1(id){
         window.location.href = "/post/"+id;
@@ -19,9 +17,13 @@ export default function Posts({ posts, loading }){
                 <li key={post.id}>
                     <h3>{post.title}</h3>
                     <hr/>
-                    <p>{text = post.content.match( /[^\.!\?]+[\.!\?]+["']?|.+$/g ).slice(0, 3).join(' ')}</p>
+                    <p>{post.content.match( /[^\.!\?]+[\.!\?]+["']?|.+$/g ).slice(0, 3).join(' ')}</p>
                     <hr/>
                     <button onClick={()=>temp1(post.id)}>Read more</button>
+                    <div className="like">
+                        <img src={Like} alt=""/> 
+                        <span>{post.likes}</span>
+                    </div>
                 </li>
             ))}
         </ul>

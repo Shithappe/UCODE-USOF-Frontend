@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Link,
 } from "react-router-dom";
-import Cookies from 'js-cookie';
+
 
 
 class Login extends React.Component {

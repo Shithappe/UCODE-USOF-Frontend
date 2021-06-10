@@ -7,6 +7,7 @@ import Reset from './components/Reset';
 import MyPage from './components/MyPage';
 import Register from './components/Register';
 import Post from './components/Post';
+import CreatePost from './components/CreatePost';
 import styles from './App.css'; 
 import Cookies from "js-cookie";
 import {
@@ -28,6 +29,7 @@ export default function App() {
               <Route path="/my_page"><MyPage /></Route>
               <Route path="/register"><Register /></Route>
               <Route path="/post/:id" render={({match}) => (  <Post id={match.params.id} />)}/>   
+              <Route path="/create_post"><CreatePost /></Route>
             </Switch>
         </Router>
       );
@@ -45,16 +47,14 @@ export default function App() {
           'Authorization': 'Bearer ' + Cookies.get("token")}
           })
           .then(function (response) {
-
-            setUsers(response.data)
-            console.log(response.data)
+              setUsers(response.data)
           })
           .catch(function (error) {
             console.log(error);
           });
       }, [])
       return users.map((user) =>
-        <li>{user.login}</li>
+        <li>{user.login},{user.rating}</li>
     );
     }
     
