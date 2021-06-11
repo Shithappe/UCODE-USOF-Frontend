@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Posts from './Posts';
 import Pagination from './Pagination';
+import './Posts.css';
 
 export default function AllPosts() {
     const [posts, setPosts] = useState([]);
@@ -28,8 +29,7 @@ export default function AllPosts() {
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
     return (
-  <div>
-
+  <div className='AllPosts'>
   <h1>All posts</h1>
   <Posts posts={currentPosts} loading={loading} />
   <Pagination

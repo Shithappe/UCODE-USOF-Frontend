@@ -17,7 +17,7 @@ const nav = () => {
     }})
     .then(function (response) {
         Cookies.remove("token");
-        alert('Logout')
+        window.location.href = "/posts";
       })
       .catch(function (error) {
         Cookies.remove("token");

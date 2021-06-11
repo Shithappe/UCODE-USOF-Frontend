@@ -44,13 +44,12 @@ class Login extends React.Component {
       Cookie.set("userLogin", response.data.user.login)
       Cookie.set("userRating", response.data.user.rating)
       Cookie.set("token", response.data.token);
-        window.location.href = "/posts";
-      })
-      .catch(function (error) {
-        alert(error)
-        alert('Incorrect login or password!')
-        console.log(error);
-      });
+      window.location.href = "/posts";
+    })
+    .catch(function (error) {
+      alert('Incorrect login or password!')
+      console.log(error);
+    });
   }
 
   render() {

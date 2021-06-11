@@ -1,30 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;800&display=swap');
-
-
 .posts{
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     list-style-type: none;
 }
 
 .posts li{
-    border: 1px solid black;
+    max-width: 1000px;
+    /* border: 1px solid rgba(85, 85, 85, 0.1); */
+    width: 50%;
     padding: 15px;
     margin: 40px;
     font-family: 'Roboto Slab', serif;
-    /* height: 200px; */
+    box-shadow: 2px 12px 18px 0px rgba(34, 60, 80, 0.2);
+    background-color: rgb(250, 250, 250);
+
+    transition: all 0.7s;
+}
+
+.posts li:hover{
+    background-color: white;
+    /* border: 1px solid rgba(85, 85, 85, 0.1); */
+    box-shadow: 2px 12px 18px 0px rgba(34, 60, 80, 0.2);
+    transform: scale(1.05);
 }
 
 .like{
     display: flex;
     float: right;
-    /* width: 50px; */
 }
 
 .like img{
     width: 22px;
     height: 22px;
     margin: 0 5px 0 5px;
+}
+
+.author:hover{
+    color: wheat;
+}
+
+.AllPosts h1{
+    margin-left: 15%;
 }
