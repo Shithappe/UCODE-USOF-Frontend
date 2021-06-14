@@ -12,9 +12,8 @@
     width: 50%;
     padding: 15px;
     margin: 40px;
-    font-family: 'Roboto Slab', serif;
     box-shadow: 2px 12px 18px 0px rgba(34, 60, 80, 0.2);
-    background-color: rgb(250, 250, 250);
+    /* background-color: rgb(250, 250, 250); */
 
     transition: all 0.7s;
 }
@@ -22,7 +21,7 @@
 .posts li:hover{
     background-color: white;
     /* border: 1px solid rgba(85, 85, 85, 0.1); */
-    box-shadow: 2px 12px 18px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 1px 6px 9px 0px rgba(34, 60, 80, 0.1);
     transform: scale(1.05);
 }
 

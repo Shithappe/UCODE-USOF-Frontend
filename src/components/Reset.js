@@ -32,11 +32,21 @@ export default function Reset() {
     }
 
     return(
-      isSent ? <h2>Check your email</h2> :
-      <form onSubmit={handleSubmit}>
-        <input type="email" value={email} onChange={handleChangeEmail} />
-        <input type="submit" value="Reset password" />
-      <Link to="login">Login</Link>
-      </form>
+      <div className='BACK'>
+        
+        <div className='Login'>
+          {isSent ? <h2 id="h2">Check your email</h2> :
+          <form onSubmit={handleSubmit}>
+            <h1>Reset password</h1>
+            <input placeholder='Enter email' type="email" value={email} onChange={handleChangeEmail} />
+            <input type="submit" value="Reset password" />
+            <div className='link'>
+              <Link to="login">Login</Link>
+              <Link to="register">Register</Link>
+            </div>
+          </form>
+}
+        </div>
+      </div>
     );
 }

@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AllPosts from './components/AllPosts'
-import Nav from './div/nav'
+import Nav from './div/nav';
 import Login from './components/Login';
 import Reset from './components/Reset';
 import MyPage from './components/MyPage';
 import Register from './components/Register';
 import Post from './components/Post';
 import CreatePost from './components/CreatePost';
+import Categories from './components/Categories';
+import Category from './components/Category';
+import Welcome from './components/Welcome';
 import styles from './App.css'; 
 import Cookies from "js-cookie";
 import {
@@ -21,7 +24,6 @@ export default function App() {
         <Router>
             <Nav />
             <Switch>
-              <Route path="/about"><About /></Route>
               <Route path="/users"><Users /></Route>
               <Route path="/posts"><AllPosts /></Route>
               <Route path="/login"><Login /></Route>
@@ -30,16 +32,16 @@ export default function App() {
               <Route path="/register"><Register /></Route>
               <Route path="/post/:id" render={({match}) => (  <Post id={match.params.id} />)}/>   
               <Route path="/create_post"><CreatePost /></Route>
+              <Route path="/categories"><Categories /></Route>
+              <Route path="/category/:id" render={({match}) => (  <Category id={match.params.id} />)}/>   
+              <Route path="/"><Welcome /></Route>
             </Switch>
         </Router>
       );
     }
     
     
-    function About() {
-      return <h2>About</h2>;
-    }
-    
+
     function Users() {
       const [users, setUsers] = useState([])
       useEffect(() => {

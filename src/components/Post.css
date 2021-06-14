@@ -1,12 +1,12 @@
 .Post{
     width: 70%;
     margin: 0 auto;
+    transition: all 0.5s;
 
 }
 
 .Post li{
     margin: 10px 1% 10px 1%;
-    /* border: 1px solid black; */
     list-style-type: none;
 }
 
@@ -14,13 +14,25 @@
     font-size: 18px;
 }
 
+.Post h1{
+    margin-left: 0;
+}
+
 .Post p{
     margin: 0 10px 0;
 }
 
+#imgEdit{
+    width: 30px;
+    height: 30px;
+    margin-left: 1%;
+}
+
+#imgEdit:hover{
+    transform: scale(1.05);
+}
+
 .Comment div{
-    display: block;
-    float: left;
     margin-bottom: 10px;
 }
 
@@ -57,4 +69,11 @@
         -4px -4px 5px 0px #fff9,
         7px 7px 20px 0px #0002,
         4px 4px 5px 0px #0001;     
+}
+
+
+.cat{
+    display: inline-block;
+    min-width: 200px;
+    margin: 5px 2px;
 }

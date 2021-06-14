@@ -5,6 +5,8 @@ import {
   BrowserRouter as Router,
   Link,
 } from "react-router-dom";
+import './Login.css';
+import back from './../back.png';
 
 
 
@@ -12,6 +14,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      style: { },
       login: '',
       password: ''
     };
@@ -52,17 +55,34 @@ class Login extends React.Component {
     });
   }
 
+  
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="email" value={this.state.login} onChange={this.handleChangeLogin} />
-        <input type="password" value={this.state.password} onChange={this.handleChangePassword} />
-      <input type="submit" value="Login" />
-      <Link to="reset">Reset password</Link>
-      <Link to="register">Register</Link>
-    </form>
+      
+      <div className='BACK'>
+         <div>
+        <div className='Login '>
+        
+        <form  onSubmit={this.handleSubmit}>
+        <h1>Login</h1>
+              <input placeholder="Email" value={this.state.login} onChange={this.handleChangeLogin} />
+          <input type="password" placeholder = "Password" value={this.state.password} onChange={this.handleChangePassword} />
+          <input type="submit" value="Login" />
+          <div className='link'>
+          <Link to="register">Register</Link>
+          <Link to="reset">Reset password</Link>
+          </div>
+        </form>
+      </div>
+      </div>
+      </div>
     );
   }
+
+  
+
+
+  
 }
 
 export default Login;

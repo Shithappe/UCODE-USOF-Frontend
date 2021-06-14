@@ -11,7 +11,6 @@ import ImageUser from '../Assets/user-astronaut-solid.svg'
 const nav = () => {
 
   function Logout(){
-    alert(Cookies.get("token"));
     axios.post("http://127.0.0.1:8000/api/auth/logout", {}, { headers: {
       'Authorization': 'Bearer ' + Cookies.get("token")
     }})
@@ -29,25 +28,6 @@ const nav = () => {
     alert(Cookies.get("token"));
   }
 
-  function temp1(){
-    axios({
-      method: 'post',
-      url: "http://127.0.0.1:8000/api/auth/login",
-      data: {
-        email: "2awdawd2@gmail.com",
-        password: "awd"
-      }
-    })
-    .then(function (response) {
-        Cookies.set("token", response.data.token);
-        alert(response.data.token)
-        // window.location.href = "/";
-      })
-      .catch(function (error) {
-        alert(error)
-      });
-  }
-
 
 
   function Info_user(){
@@ -55,19 +35,17 @@ const nav = () => {
     return(
       <div>  
         <Link to="/login">Login</Link>
-        <Link to="/my_page">My page</Link>
+        <br/>
+        <Link to="register">Register</Link>
         
       </div>
     )
     else{
-      let link = "/user/" + Cookies.get('userId');
     return(
       <div className="navuserifno">
-        <Link to={link}><img src={ImageUser} alt=""/></Link>
+        <Link to={"/user/" + Cookies.get('userId')}><img src={ImageUser} alt=""/></Link>
         <div className="navuserifno2">
           <span onClick={temp}>{Cookies.get('userLogin')}</span>
-          {/* <span>User</span> */}
-          <br/>
           <button onClick={Logout}>Log out</button>
         </div>
       </div>
@@ -75,15 +53,17 @@ const nav = () => {
   }
 
   return(<nav>
-      <div onClick={temp1} id="awd">
+      <div onClick={e=>window.location.href = "/"} id="awd">
         <h1>usof.bug</h1>
         <img src={Image} alt=""/> 
       </div>
       <ul>
-        <Link to="/create_post">Create post</Link>
-        <Link to="/posts">All posts</Link>
-        <Link to="/about">Category</Link>
-        <Link to="/users">Users</Link>
+       <li><Link to="/create_post">Create post</Link></li>
+       <li><Link to="/posts">All posts</Link></li>
+       <li><Link to="/categories">Category</Link></li>
+       
+        
+        
       </ul>
       <div className="search">
         <input type='text' placeholder="seach"/>

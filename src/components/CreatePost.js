@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookie from "js-cookie";
-import Select from 'react-select'
+import Select from 'react-select';
+import './CreatePost.css';
 
 
-export default function CreatePost() {
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [categories, setCategories] = useState([]);
+export default function CreatePost(post) {
+  console.log(post)
+  let update = true;
+    if (!post.post) {
+      update = false
+      const post = {
+        title: '',
+        content: ''
+      }
+    }
+      else post = {
+        post_id: post.post.id,
+        title: post.post.title,
+        content: post.post.content
+      }
+
+    const [title, setTitle] = useState(post.title);
+    const [content, setContent] = useState(post.content);
+    const [categories, setCategories] = useState({});
     const [categories1, setCategories1] = useState([]);
 
     useEffect(() => {
@@ -20,32 +36,28 @@ export default function CreatePost() {
           return {value: categ.id, label: categ.title}
       }))
         setCategories(response.data)
-        // console.log(response.data)
-
       })
-      .catch(function (error) {
-          console.log(error);
-      });
-      
-   
-      
+      .catch(function (error) { console.log(error); });
+
     }, [])
-    console.log(categories1)
+
 
     if (Cookie.get("token") === undefined) window.location.href = "/login";
     else{
         
         const handleChangeTitle = e => {setTitle(e.target.value);}
         const handleChangeContent = e => {setContent(e.target.value);}
-        const handleChangeCategories = e => {setCategories(e.target.value);}
 
         function conv(categories){
-            alert(categories)
-            return categories
+          const cat = { "id": categories.map((act)=>act.value) }
+          return JSON.stringify(cat)
         }
     
         const handleSubmit = (e) => {
           e.preventDefault();
+          
+          console.log(post.post_id,title, content, conv(categories))
+        !update ?
         axios({
           method: 'post',
           url: "http://127.0.0.1:8000/api/posts",
@@ -56,24 +68,50 @@ export default function CreatePost() {
             categories: conv(categories)
           }
           })
-          .then(function () {
-              window.location.href = "/my_page"
+          .then(function (res) {              window.location.href = "/post/"+res.data.id;          })
+          .catch(function (error) {            console.log(error);          })
+        :
+        axios({
+          method: 'patch',
+          url: "http://127.0.0.1:8000/api/posts/" + post.post_id,
+          headers: { 'Authorization': 'Bearer ' + Cookie.get("token")},
+          data: {
+            title: title,
+            content: content,
+            categories: conv(categories)
+          }
           })
-          .catch(function (error) {
-              console.log(error);
-          });
+          .then(function (res) {              window.location.href = "/post/"+res.data.id;          })
+          .catch(function (error) {            console.log(error);          })        
         }
 
-          
         return(
-          <form onSubmit={handleSubmit}>
-              
-            <input placeholder="Title" type="text" value={title} onChange={handleChangeTitle} />
-            <input placeholder="Content" type="text" value={content} onChange={handleChangeContent} />
-            <input placeholder="Categories" type="text" onChange={handleChangeCategories} />
-            <Select options={categories1} isMulti/>
-            <input type="submit" value="Create" />
+          <div>
+           {update ? <h1>Update post</h1> : <h1>Create post</h1>} 
+          
+          <form className='CreatePost' onSubmit={handleSubmit}>
+            <span>Title</span>
+            <input required placeholder="Title" type="text" value={title} onChange={handleChangeTitle} />
+            <span>Content</span>
+            <textarea rows="6" cols="80" value={content} onChange={handleChangeContent}></textarea>
+            <span>Categories</span>
+            <Select 
+              options={categories1} 
+              isMulti
+              onChange={setCategories}
+              theme={theme => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'rgba(0, 0, 0, 0.1);',
+                  primary: 'black',
+                },
+              })}
+            />
+            {update ? <input type="submit" value="Update" /> : <input type="submit" value="Create" />}
           </form>
+          </div>
         );
     }
 }
